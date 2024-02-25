@@ -11,6 +11,7 @@ A nice short title for your project, helping me to understand roughly what it is
 Each project will have a team of 3-5 people, an one person will serve as the point of contact for the team who will "own" the repository.  Everyone will be granted access to this repository.  This section should include the full names of each team member, **along with their github ids**, and indicate the point of contact for the group.
 
 github ids:
+
 bryce Anthony - bryce-ka
 ### Introduction
 
