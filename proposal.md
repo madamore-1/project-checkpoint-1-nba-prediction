@@ -12,11 +12,10 @@ Each project will have a team of 3-5 people, an one person will serve as the poi
 
 github ids:
 
-bryce Anthony - bryce-ka
+- bryce Anthony - bryce-ka
+- Mervin McDouall - mervinmcdougall
+- John Miller - jimiller00
 
-Mervin McDouall - mervinmcdougall
-
-John Miller - jimiller00
 ### Introduction
 
 This section will introduce your project.  It will _briefly_ answer the following questions from [Heilmeier's catechism](https://www.darpa.mil/work-with-us/heilmeier-catechism).
