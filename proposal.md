@@ -13,6 +13,7 @@ Each project will have a team of 3-5 people, an one person will serve as the poi
 github ids:
 
 bryce Anthony - bryce-ka
+
 Mervin McDouall - mervinmcdougall
 
 ### Introduction
