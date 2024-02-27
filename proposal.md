@@ -1,12 +1,10 @@
-### Title
-
-Beyond the Spread: AI-powered Insights for NBA Betting
+## Beyond the Spread: AI-powered Insights for NBA Betting
 
 ### Team
 
 Github ids:
 
-Archie Frank - 
+Archie Frank - SYR-Archie
 
 Bryce Anthony (Point of contact)- bryce-ka
 
