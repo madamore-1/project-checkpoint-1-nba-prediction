@@ -45,8 +45,6 @@ We plan to utilize NBA data sourced through a collection of NBA APIs, the offici
 The data is from a verified source – and is provided by the governing body of the NBA itself. The data is in a normalized format, but will be adjusted following the completion of our  exploratory analysis.
 
 #### Methods
-Describe your modeling approach.  What sorts of transformations / preprocessing are going to be necessary?  What sorts of modeling techniques will you apply? How are you going to evaluate your models (note that your evaluation should be consistent with stakeholder needs)?
-
 Building off of previous research, we intend to explore the effectivness of neural networks and feature engineering for this match outcome and point differential prediction. Although we are still researching various methods of feature engineering for tasks involving the NBA,  based on our research- the inclusion of player data in our models is likely to have a meaningful impact on the effectivness of our model. 
 
 #### Stakeholders
