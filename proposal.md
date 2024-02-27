@@ -12,6 +12,8 @@ Mervin McDouall - mervinmcdougall
 
 John Miller - jimiller00
 
+Michael A. d'Amore - madamore-1
+
 ### Background
 Basketball, and the professional league run by the NBA, is the second most popular sport in the United States. According to Forbes, regular season NBA games average 1.4 million to 1.5 million viewers per game, with playoff games averaging 5.4 million viewers per game, and peaking at 11.65 million for the finals. Parallel to this, the sports betting industry has exploded since the historic ruling in Murphy v. NCAA, which opened up the possibility of state-regulated sports betting. As of 2023, sports betting is legal in 37 states and the District of Columbia. In 2022 alone, more than $93 billion in legal bets were placed in the US. Estimates for the total amount of legal bets placed on the NBA range from $10-20 billion.
 
