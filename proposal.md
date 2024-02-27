@@ -74,9 +74,9 @@ Period|Activity|Milestone
 The biggest risk to our product would be the misinterpretation of the generated results. It needs to be clearly communicated with any and all users that these are only predictions, and not guaranteed outcomes. Any predictions given would need to be placed behind a disclaimer and user-agreement that removes liability.
 
 
-[^1]: [Predicting the Betting Line in NBA Games]([https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001](https://cs229.stanford.edu/proj2013/ChengDadeLipmanMills-PredictingTheBettingLineInNBAGames.pdf))
+[^1]: [Predicting the Betting Line in NBA Games](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001)
 
-[^2]: [Enhancing Basketball Game Outcome Prediction through Fused Graph Convolutional Networks and Random Forest Algorithm](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001)[^2]
+[^2]: [Enhancing Basketball Game Outcome Prediction through Fused Graph Convolutional Networks and Random Forest Algorithm](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001)
 
 [^3]: [Gridiron Genius: Using Neural Networks to Predict College Football Games](https://deepblue.lib.umich.edu/bitstream/handle/2027.42/176935/Luke_boll_capstone_poster_-_Luke_Boll.pdf?sequence=2)
 
