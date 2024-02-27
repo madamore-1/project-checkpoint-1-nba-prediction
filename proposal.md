@@ -7,6 +7,7 @@ Beyond the Spread: AI-powered Insights for NBA Betting
 Github ids:
 
 Archie Frank - 
+
 Bryce Anthony (Point of contact)- bryce-ka
 
 Mervin McDouall - mervinmcdougall
@@ -28,44 +29,22 @@ Our end goal is to provide AI-backed insights into the outcomes of NBA sporting 
 
   
 ### Literature Review
-
-Here, you will review methods that have been attempted (use [Google Scholar](https://scholar.google.com) to find out), or cite literature to provide evidence that your method is novel.  You should include citations to reviewed material.  Use [github's markdown syntax for footnotes](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#footnotes)[^1].
-
-[Predicting the Betting Line in NBA Games]([https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001](https://cs229.stanford.edu/proj2013/ChengDadeLipmanMills-PredictingTheBettingLineInNBAGames.pdf))[^1]
-
-[Enhancing Basketball Game Outcome Prediction through Fused Graph Convolutional Networks and Random Forest Algorithm](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001)[^2]
-
-[Gridiron Genius: Using Neural Networks to Predict College Football Games](https://deepblue.lib.umich.edu/bitstream/handle/2027.42/176935/Luke_boll_capstone_poster_-_Luke_Boll.pdf?sequence=2)[^3]
-
-[Predicting the winning team in basketball: A novel approach](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9764182/#entropy-25-00765-t001)[^4]
-
-[The Bank is Open: AI in Sports Gambling](https://cs229.stanford.edu/proj2018/report/3.pdf)[^5]
-
-
-
 The rapid growth and profitability of the sports betting industry have attracted significant research interest. As a consequence, a substantial body of research exploring the application of artificial intelligence (AI) in sports emphasizes the profitability of AI models as a key measure of success. While this has led to a variety of approaches, making direct comparisons between models is challenging. Many studies incorporate specific betting strategies within their models, making it difficult to isolate the unique contribution of the model itself to generating the profitable outcomes. Additionally, the focus of our project departs from this profit-driven approach as we aim to investigate how accurately AI can be used to obtain the key information behind the decision-making in sports betting, rather than focusing on the specific betting decision itself. 
 
-Studies investigating the prediction of game outcomes and final score differentials have converged on two key findings: the critical role of feature engineering and the superior performance of neural network architectures for this task. Cheng et al. [^1] and Zhao et al.[^2], focused on the final score differentials, found that the neural networks performed better than the machine learning algorithms tested. Similarly; Boll [^3], focused on predicting the final score differentials, found that even a simple neural network using feature-engineered inputs had similar performance to the highest performing machine learning algorithms.
+Studies investigating the prediction of game outcomes and final score differentials have converged on two key findings: the critical role of feature engineering and the superior performance of neural network architectures for this task. Cheng et al[^1]. and Zhao et al[^2]., focused on the final score differentials, found that the neural networks performed better than the machine learning algorithms tested. Similarly; Boll[^3], focused on predicting the final score differentials, found that even a simple neural network using feature-engineered inputs had similar performance to the highest performing machine learning algorithms.
 
-The importance of feature engineering was echoed in all the other studies as well. While all the studies found that correlation based methods of feature selection improved the performance of their neural networks. More creative approaches have been more fruitful.  Zhao et al.[^2], focused on match outcome prediction- found research using a combination of input features altered using a fuzzy logic system and a neural network to be the highest performing model in their literature review. Similarly, Oksen et al [^4]. attempted to incorporate player synergies through feature engineering and achieved an accuracy of 76% when predicting the outcome of matches. Bucquet et al. [^5], predicting the total combined points scored in a game, tested a variety of AI based approaches and found a feed forward neural network to perform better than a LSTM.
+The importance of feature engineering was echoed in all the other studies as well. While all the studies found that correlation based methods of feature selection improved the performance of their neural networks. More creative approaches have been more fruitful.  Zhao et al[^2]., focused on match outcome prediction- found research using a combination of input features altered using a fuzzy logic system and a neural network to be the highest performing model in their literature review. Similarly, Oksen et al[^4]. attempted to incorporate player synergies through feature engineering and achieved an accuracy of 76% when predicting the outcome of matches. Bucquet et al[^5]., predicting the total combined points scored in a game, tested a variety of AI based approaches and found a feed forward neural network to perform better than a LSTM.
 
 Focusing on the application of neural networks for the match outcome and point differential prediction; the variety of available approaches, lack of player data used in models, various neural network architectures, and lack of consensus amongst previous researchers leaves plenty to be explored. Since we intend for our work to be used to provide key information behind the decision-making in NBA sports betting, its important for us to be transparent about the strengths and weaknesses of our model when it is shown to individuals outside our team. 
 
 
 ### Data and Methods
-
 #### Data
-
-##### If you have data:
-
-You will include a link to your data, along with summary information (e.g., how many columns, rows, and the types of features).  Also include some discussion about the data's provenance - how do you know the data is reliable?  Does it have meta data, and if not, what else do you know about it?  If you anticipate needing more than one dataset, please indicate each dataset you anticipate needing and provide evidence that those datasets are available.
-
 We plan to utilize NBA data sourced through a collection of NBA APIs, the official NBA statistics reference, and Basketball Reference. The dataset includes seasonal data from 1996 to present, for all 82 regular games played by each of the 30 teams in the NBA and subsequent playoff appearances. Each team has a roster of 15 to 18 total players across a season. There are team-wide performance stats for every game as well as individual player performance.
 
 The data is from a verified source – and is provided by the governing body of the NBA itself. The data is in a normalized format, but will be adjusted following the completion of our  exploratory analysis.
 
 #### Methods
-
 Describe your modeling approach.  What sorts of transformations / preprocessing are going to be necessary?  What sorts of modeling techniques will you apply? How are you going to evaluate your models (note that your evaluation should be consistent with stakeholder needs)?
 
 Building off of previous research, we intend to explore the effectivness of neural networks and feature engineering for this match outcome and point differential prediction. Although we are still researching various methods of feature engineering for tasks involving the NBA,  based on our research- the inclusion of player data in our models is likely to have a meaningful impact on the effectivness of our model. 
@@ -74,12 +53,10 @@ Building off of previous research, we intend to explore the effectivness of neur
 The ability to predict the outcome of a basketball game, and predict the amount of points a team will win by, is lucrative and useful to many people. The stakeholders with highest interest in this predictive model are sports bettors. Their motivation for using this model will be to minimize risk and improve the odds of winning, especially for a spread which is made to be as close to 50/50 odds as possible. Other interested parties include sports analysts, hardcore NBA fans, and casual observers who want to improve their analysis of the game. Content creators covering the NBA who talk about games and their outcomes could make better predictions, therefore making their analysis better and increasing their ability to analyze the game. Also, NBA fans who want to know more about the game they are passionate about may use it casually.
 
 #### Communication
-
 Our team uses MS teams to communicate via virtual meetings and chat. We plan to use github to share and collaborate on coding, and to hold our dataset.
 
 
 ### Project Plan
-
 Period|Activity|Milestone
 |---|---|---|
 | 03/02/2024 | Collect data via API and webscraping | Ensure we have a working API which we can use for collecting data. |
@@ -94,8 +71,15 @@ Period|Activity|Milestone
 
 
 ### Risks
-
 The biggest risk to our product would be the misinterpretation of the generated results. It needs to be clearly communicated with any and all users that these are only predictions, and not guaranteed outcomes. Any predictions given would need to be placed behind a disclaimer and user-agreement that removes liability.
 
 
-[^1]: Like this
+[^1]: [Predicting the Betting Line in NBA Games]([https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001](https://cs229.stanford.edu/proj2013/ChengDadeLipmanMills-PredictingTheBettingLineInNBAGames.pdf))
+
+[^2]: [Enhancing Basketball Game Outcome Prediction through Fused Graph Convolutional Networks and Random Forest Algorithm](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10217531/#:~:text=Cao%20%5B25%5D%20used%20machine%20learning,a%20success%20rate%20of%2069.67%25./#entropy-25-00765-t001)[^2]
+
+[^3]: [Gridiron Genius: Using Neural Networks to Predict College Football Games](https://deepblue.lib.umich.edu/bitstream/handle/2027.42/176935/Luke_boll_capstone_poster_-_Luke_Boll.pdf?sequence=2)
+
+[^4]: [Predicting the winning team in basketball: A novel approach](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9764182/#entropy-25-00765-t001)
+
+[^5]: [The Bank is Open: AI in Sports Gambling](https://cs229.stanford.edu/proj2018/report/3.pdf)
