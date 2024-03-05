@@ -1,5 +1,5 @@
 # Beyond the Spread: AI-powered Insights for NBA Betting
----
+
 ## Team Members and Github ids
 
 ### Github ids:
