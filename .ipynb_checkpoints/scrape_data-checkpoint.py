@@ -264,7 +264,6 @@ def main():
     get_season_schedule(str(volumes[my_vol]), volumes[my_vol])
     name_of_file = f"{str(volumes[my_vol])}.parquet.gzip"
     season_games = pd.read_parquet(name_of_file)
-    season_games
     get_game_stats(season_games, f"{str(volumes[my_vol])}_game_stats")
     print("2-4 .parquet.gzip files should be saved in the current directory!")
     
