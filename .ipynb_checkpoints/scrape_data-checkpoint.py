@@ -104,7 +104,7 @@ def get_game_stats(dataframe, filename):
         this_season = game["season"]
         if count % 100 == 0:
             if count!=0:
-                print("\nscraped ", len(pd.read_parquet(f"{filename}_error.parquet.gzip")), f" games from {this_season}")
+                print("\nscraped ", len(pd.read_parquet(f"{filename}.parquet.gzip")), f" games from {this_season}")
         try:
             box_score_url = f"https://www.basketball-reference.com{ext}"
             time.sleep(random.randint(2, 6))
