@@ -207,7 +207,9 @@ def get_game_stats(dataframe, filename):
             "away_pf":[away_pf],
             "away_pts":[away_pts],
             "arena": [arena]})
+            
         except:
+            
             error = pd.DataFrame({"season": game["season"], 
             "date": game["date"], 
             "away_team_id": away_team_id, 
@@ -215,6 +217,8 @@ def get_game_stats(dataframe, filename):
             "arena": arena, 
             "link": ext, 
             "error": ["error scraping table"]})
+            flag = 1
+            print("error", error)
             try:
                 name_of_file = f"{filename}_error.parquet.gzip"
                 errors = pd.concat([pd.read_parquet(name_of_file), error], ignore_index = True)
@@ -226,7 +230,6 @@ def get_game_stats(dataframe, filename):
             
         if count % 100 == 0 and count != 0:
             try:
-                flag = 1
                 name_of_file = f"{filename}.parquet.gzip"
                 game_stats = pd.concat([pd.read_parquet(name_of_file), game_stats], ignore_index = True)
                 game_stats.to_parquet(name_of_file)
