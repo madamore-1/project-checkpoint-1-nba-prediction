@@ -93,7 +93,7 @@ def get_game_stats(dataframe, filename):
     """
     count = 0
     flag = 0
-    print("getitng individual game stats", end = " ")
+    print("getting individual game stats", end = " ")
     for game in dataframe.iterrows():
         print('-', end="") 
         game = game[1]
@@ -227,7 +227,9 @@ def get_game_stats(dataframe, filename):
                 name_of_file = f"{filename}_error.parquet.gzip"
                 error.to_parquet(name_of_file)
             continue
-            
+         
+        count+=1         
+        
         if count % 100 == 0 and count != 0:
             try:
                 name_of_file = f"{filename}.parquet.gzip"
@@ -237,7 +239,7 @@ def get_game_stats(dataframe, filename):
             except:
                 name_of_file = f"{filename}.parquet.gzip"
                 game_stats.to_parquet(name_of_file)
-        count+=1
+        
     try:
         name_of_file = f"{filename}.parquet.gzip"
         game_stats = pd.concat([pd.read_parquet(name_of_file), game_stats], ignore_index = True)
