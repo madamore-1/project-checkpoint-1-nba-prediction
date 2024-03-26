@@ -8,7 +8,7 @@ import pickle
 
 def get_season_schedule(filename, seasons = [2015]):
     '''
-    Gets the season schedule (games played throughout the season) up until the playoffs. 
+    Gets the season schedule (games played throughout the season) up until the playoffs.
     creates a dataframe to inform us of any potential errors and allows code to not break because of errors
     '''
     season_schedule_table = pd.DataFrame(columns = ["season", "date", "away_team_id", "home_team_id", "arena", "link"])
@@ -28,12 +28,12 @@ def get_season_schedule(filename, seasons = [2015]):
                 try:
                     name_of_file = f"{filename}_error.parquet.gzip"
                     errors = pd.concat([pd.read_parquet(name_of_file), errors], ignore_index = True)
-                    errors.to_parquet(name_of_file)              
+                    errors.to_parquet(name_of_file)
                 except:
                     name_of_file = f"{filename}_error.parquet.gzip"
                     errors.to_parquet(name_of_file)
                 continue
-            try:    
+            try:
                 schedule_table = soup.find('table', attrs={'id':'schedule'})
                 games = schedule_table.tbody.findAll("tr")
                 season = []
@@ -60,8 +60,8 @@ def get_season_schedule(filename, seasons = [2015]):
                     arenas.append(arena)
                 season_month = pd.DataFrame({"season": season,
                                              "date": dates,
-                                             "away_team_id": away_team_ids, 
-                                             "home_team_id": home_team_ids, 
+                                             "away_team_id": away_team_ids,
+                                             "home_team_id": home_team_ids,
                                               "arena":arenas,
                                              "link":links
                                             })
@@ -71,16 +71,16 @@ def get_season_schedule(filename, seasons = [2015]):
                 try:
                     name_of_file = f"{filename}_error.parquet.gzip"
                     errors = pd.concat([pd.read_parquet(name_of_file), errors], ignore_index = True)
-                    errors.to_parquet(name_of_file)              
+                    errors.to_parquet(name_of_file)
                 except:
                     name_of_file = f"{filename}_error.parquet.gzip"
                     errors.to_parquet(name_of_file)
                 continue
-            # try to append to an existing file, if not exist create it 
+            # try to append to an existing file, if not exist create it
             try:
                 name_of_file = f"{filename}.parquet.gzip"
                 season_games = pd.concat([pd.read_parquet(name_of_file), season_month], ignore_index = True)
-                season_games.to_parquet(name_of_file)              
+                season_games.to_parquet(name_of_file)
             except:
                 name_of_file = f"{filename}.parquet.gzip"
                 season_month.to_parquet(name_of_file)
@@ -89,39 +89,80 @@ def get_season_schedule(filename, seasons = [2015]):
 
 def get_game_stats(dataframe, filename):
     """
-    gets individual game statistics given a seasons games as a pandas df 
+    gets individual game statistics given a seasons games as a pandas df
     """
-    count = 0
+    count = 1
     flag = 0
+
+    game_stats = pd.DataFrame(columns = ["date",
+            "home_team",
+            "home_fg",
+            "home_fga",
+            "home_fg_pct",
+            "home_fg3",
+            "home_fg3a",
+            "home_fg3_pct",
+            "home_ft",
+            "home_fta",
+            "home_ft_pct",
+            "home_orb",
+            "home_drb",
+            "home_trb",
+            "home_ast",
+            "home_stl",
+            "home_blk",
+            "home_tov",
+            "home_pf",
+            "home_pts",
+            "away_team",
+            "away_fg",
+            "away_fga",
+            "away_fg_pct",
+            "away_fg3",
+            "away_fg3a",
+            "away_fg3_pct",
+            "away_ft",
+            "away_fta",
+            "away_ft_pct",
+            "away_orb",
+            "away_drb",
+            "away_trb",
+            "away_ast",
+            "away_stl",
+            "away_blk",
+            "away_tov",
+            "away_pf",
+            "away_pts",
+            "arena"])
+    
     print("getitng individual game stats", end = " ")
+
     for game in dataframe.iterrows():
-        print('-', end="") 
+        print('.', end="")
         game = game[1]
         home_team_id = game["home_team_id"]
         away_team_id = game["away_team_id"]
         arena = game["arena"]
         ext = game["link"]
         this_season = game["season"]
-        if count % 100 == 0:
-            if count!=0:
-                print("\nscraped ", len(pd.read_parquet(f"{filename}.parquet.gzip")), f" games from {this_season}")
         try:
             box_score_url = f"https://www.basketball-reference.com{ext}"
-            time.sleep(random.randint(2, 6))
+            time.sleep(random.randint(5, 10))
             open_link = urlopen(box_score_url)
             soup = BeautifulSoup(open_link, features="lxml")
-        except:
-            error = pd.DataFrame({"season": game["season"], 
-            "date": game["date"], 
-            "away_team_id": away_team_id, 
-            "home_team_id": home_team_id, 
-            "arena": arena, 
-            "link": ext, 
+        except Exception as e:
+            print(e)
+            error = pd.DataFrame({"season": game["season"],
+            "date": game["date"],
+            "away_team_id": away_team_id,
+            "home_team_id": home_team_id,
+            "arena": arena,
+            "link": ext,
             "error": ["404: invalid game link"]})
             try:
                 name_of_file = f"{filename}_error.parquet.gzip"
                 errors = pd.concat([pd.read_parquet(name_of_file), error], ignore_index = True)
-                errors.to_parquet(name_of_file)              
+                errors.to_parquet(name_of_file)
             except:
                 name_of_file = f"{filename}_error.parquet.gzip"
                 error.to_parquet(name_of_file)
@@ -167,18 +208,19 @@ def get_game_stats(dataframe, filename):
             away_pf = away_stats.find('td', attrs = {'data-stat': 'pf'}).string
             away_pts = away_stats.find('td', attrs = {'data-stat': 'pts'}).string
 
-            game_stats = pd.DataFrame({
+            this_game_stats = pd.DataFrame({
+            "date": [game["date"]],
             "home_team":[home_team_id],
-            "home_fg":[home_fg], 
-            "home_fga":[home_fga], 
-            "home_fg_pct":[home_fg_pct], 
-            "home_fg3":[home_fg3], 
-            "home_fg3a":[home_fg3a], 
-            "home_fg3_pct":[home_fg3_pct], 
-            "home_ft":[home_ft], 
-            "home_fta":[home_fta], 
-            "home_ft_pct":[home_ft_pct], 
-            "home_orb":[home_orb], 
+            "home_fg":[home_fg],
+            "home_fga":[home_fga],
+            "home_fg_pct":[home_fg_pct],
+            "home_fg3":[home_fg3],
+            "home_fg3a":[home_fg3a],
+            "home_fg3_pct":[home_fg3_pct],
+            "home_ft":[home_ft],
+            "home_fta":[home_fta],
+            "home_ft_pct":[home_ft_pct],
+            "home_orb":[home_orb],
             "home_drb":[home_drb],
             "home_trb":[home_trb],
             "home_ast":[home_ast],
@@ -188,16 +230,16 @@ def get_game_stats(dataframe, filename):
             "home_pf":[home_pf],
             "home_pts":[home_pts],
             "away_team":[away_team_id],
-            "away_fg":[away_fg], 
-            "away_fga":[away_fga], 
-            "away_fg_pct":[away_fg_pct], 
-            "away_fg3":[away_fg3], 
-            "away_fg3a":[away_fg3a], 
-            "away_fg3_pct":[away_fg3_pct], 
-            "away_ft":[away_ft], 
-            "away_fta":[away_fta], 
-            "away_ft_pct":[away_ft_pct], 
-            "away_orb":[away_orb], 
+            "away_fg":[away_fg],
+            "away_fga":[away_fga],
+            "away_fg_pct":[away_fg_pct],
+            "away_fg3":[away_fg3],
+            "away_fg3a":[away_fg3a],
+            "away_fg3_pct":[away_fg3_pct],
+            "away_ft":[away_ft],
+            "away_fta":[away_fta],
+            "away_ft_pct":[away_ft_pct],
+            "away_orb":[away_orb],
             "away_drb":[away_drb],
             "away_trb":[away_trb],
             "away_ast":[away_ast],
@@ -207,41 +249,41 @@ def get_game_stats(dataframe, filename):
             "away_pf":[away_pf],
             "away_pts":[away_pts],
             "arena": [arena]})
-        except:
-            error = pd.DataFrame({"season": game["season"], 
-            "date": game["date"], 
-            "away_team_id": away_team_id, 
-            "home_team_id": home_team_id, 
-            "arena": arena, 
-            "link": ext, 
+            
+            game_stats = pd.concat([game_stats, this_game_stats], ignore_index = True)
+            
+        except Exception as e:
+            print(e)
+            error = pd.DataFrame({"season": game["season"],
+            "date": game["date"],
+            "away_team_id": away_team_id,
+            "home_team_id": home_team_id,
+            "arena": arena,
+            "link": ext,
             "error": ["error scraping table"]})
+            flag = 1
             try:
                 name_of_file = f"{filename}_error.parquet.gzip"
                 errors = pd.concat([pd.read_parquet(name_of_file), error], ignore_index = True)
-                errors.to_parquet(name_of_file)              
-            except:
+                errors.to_parquet(name_of_file)
+            except Exception as e:
+                print(e)
                 name_of_file = f"{filename}_error.parquet.gzip"
                 error.to_parquet(name_of_file)
             continue
-            
-        if count % 100 == 0 and count != 0:
-            try:
-                flag = 1
-                name_of_file = f"{filename}.parquet.gzip"
-                game_stats = pd.concat([pd.read_parquet(name_of_file), game_stats], ignore_index = True)
-                game_stats.to_parquet(name_of_file)
-                print(f"\nteam data for {len(game_stats)} teams collected in the {this_season}")
-            except:
-                name_of_file = f"{filename}.parquet.gzip"
-                game_stats.to_parquet(name_of_file)
+
+
+        if count % 100 == 0:
+            name_of_file = f"{filename}.parquet.gzip"
+            game_stats.to_parquet(name_of_file)
+            print(f"\nstats scraped from {len(game_stats)} of {len(dataframe)} in {this_season}")
+
+        
+        if count == len(dataframe):
+            name_of_file = f"{filename}.parquet.gzip"
+            game_stats.to_parquet(name_of_file)
         count+=1
-    try:
-        name_of_file = f"{filename}.parquet.gzip"
-        game_stats = pd.concat([pd.read_parquet(name_of_file), game_stats], ignore_index = True)
-        game_stats.to_parquet(name_of_file)             
-    except:
-        name_of_file = f"{filename}.parquet.gzip"
-        game_stats.to_parquet(name_of_file) 
+
     if flag == 1:
         print("errors: ", len(pd.read_parquet(f"{filename}_error.parquet.gzip")))
     return game_stats
@@ -250,23 +292,26 @@ def get_game_stats(dataframe, filename):
 def main():
     my_vol = int(input("volume number:"))
     my_vol-=1
-    
+
+
+
     Volume_1 =  [2015, 2016]
     Volume_2 =  [2017, 2018]
     Volume_3 =  [2019, 2020]
     Volume_4 =  [2021, 2022]
-    
+
     volumes = [Volume_1, Volume_2, Volume_3, Volume_4]
     print("getting seasons: ", str(volumes[my_vol]))
-    
-    
+
+
     #gets game schedule of a list of seasons
     get_season_schedule(str(volumes[my_vol]), volumes[my_vol])
     name_of_file = f"{str(volumes[my_vol])}.parquet.gzip"
     season_games = pd.read_parquet(name_of_file)
     get_game_stats(season_games, f"{str(volumes[my_vol])}_game_stats")
     print("2-4 .parquet.gzip files should be saved in the current directory!")
-    
+
+
+
 if __name__ == "__main__":
     main()
-
